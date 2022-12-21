@@ -1,1 +1,1 @@
-import { DateTimeConvert } from './DateTimeConvert'
+export { DateTimeConvert as dateTimeConvert } from './DateTimeConvert'
