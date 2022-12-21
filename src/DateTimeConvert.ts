@@ -21,10 +21,16 @@ interface Params {
 }
 
 export function DateTimeConvert({ inTimeZone, inDate, inTime, outTimeZone }: Params) {
+  const timeZone = dayjs().tz(inTimeZone).format('Z')
+
+  const input = dayjs(`${inDate}T${inTime}`).format('YYYY-MM-DDTHH:mm:ss') + timeZone
+  const utc = dayjs(input).utc().format('YYYY-MM-DDTHH:mm:ssZ')
+  const timezone = dayjs(utc).tz(outTimeZone).format('YYYY-MM-DDTHH:mm:ssZ')
+
   const dateTime: ExportType = {
-    input: dayjs(`${inDate}T${inTime}`).tz(inTimeZone).format('YYYY-MM-DDTHH:mm:ssZ'),
-    utc: dayjs(`${inDate}T${inTime}`).tz(inTimeZone).utc().format('YYYY-MM-DDTHH:mm:ssZ'),
-    timezone: dayjs(`${inDate}T${inTime}`).tz(outTimeZone).format('YYYY-MM-DDTHH:mm:ssZ')
+    input,
+    utc,
+    timezone
   }
   return dateTime
 }

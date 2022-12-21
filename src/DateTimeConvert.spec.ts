@@ -5,15 +5,15 @@ describe('DateTimeConvert', () => {
   it('Best case', () => {
     expect(
       DateTimeConvert({
-        inTimeZone: 'Asia/Seoul',
+        inTimeZone: 'Asia/Dubai',
         inDate: '2022-12-20',
         inTime: '01:40',
-        outTimeZone: 'America/Los_Angeles'
+        outTimeZone: 'Asia/Seoul'
       })
     ).toStrictEqual({
-      input: '2022-12-20T01:40:00+09:00',
-      utc: '2022-12-19T16:40:00+00:00',
-      timezone: '2022-12-19T08:40:00-08:00'
+      input: '2022-12-20T01:40:00+04:00',
+      utc: '2022-12-19T21:40:00+00:00',
+      timezone: '2022-12-20T06:40:00+09:00'
     })
   })
 })
